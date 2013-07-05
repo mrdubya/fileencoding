@@ -30,7 +30,7 @@ function! StatusFileEncoding(buf)
 	let outenc = getbufvar(a:buf, '&fileencoding')
 	if outenc =~ "\\(utf\\|ucs\\)-*"
 		let outenc = outenc.":"
-		if !getbufvar(a:buf, 'a:bomb')
+		if !getbufvar(a:buf, '&bomb')
 			let outenc = outenc."no"
 		endif
 		let outenc = outenc."bomb"
