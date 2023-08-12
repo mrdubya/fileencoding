@@ -1,6 +1,6 @@
 " VIM FileEncoding plugin.
 "
-" Copyright (c) 2004-2013 Mike Williams <mrmrdubya@gmail.com>
+" Copyright (c) 2004-2023 Mike Williams <mrmrdubya@gmail.com>
 "
 " Permission to use, copy, modify, and distribute this software for any
 " purpose with or without fee is hereby granted, provided that the above
@@ -18,6 +18,9 @@ if exists("loaded_fileencoding")
 	finish
 endif
 let loaded_fileencoding = 1
+
+let s:keepcpo = &cpo
+set cpo&vim
 
 function! StatusFileEncoding(buf)
 	if expand(a:buf) =~ "\\[\\(File\\|Buf\\) List]"
@@ -37,5 +40,8 @@ function! StatusFileEncoding(buf)
 	endif
 	return '['.getbufvar(a:buf, '&encoding').'/'.outenc.']'
 endfunc
+
+let &cpo = s:keepcpo
+unlet s:keepcpo
 
 " eof
